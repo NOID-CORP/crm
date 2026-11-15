@@ -269,10 +269,10 @@ var sb=window.supabase.createClient(C.url,C.llave,{auth:{persistSession:true,aut
 var modoCrear=false;
 function msj(el,t,err){el.textContent=t;el.className='msj'+(err?' error':'');el.hidden=!t}
 function traduce(e){var m=(e&&e.message)||String(e);
-  if(/Invalid login/i.test(m))return 'Correo o contraseña incorrectos.';
+  if(/Invalid login/i.test(m))return 'Correo o contraseña incorrectos. Si es tu primera vez, toca “Primera vez: crear mi contraseña” abajo.';
   if(/no tiene acceso|Database error saving new user/i.test(m))return 'Este correo no tiene acceso al CRM de NOID.';
   if(/already registered/i.test(m))return 'Este correo ya tiene contraseña. Entra con ella o usa “Olvidé mi contraseña”.';
-  if(/Email not confirmed/i.test(m))return 'Falta confirmar el correo. Revisa tu bandeja de entrada.';
+  if(/Email not confirmed/i.test(m))return 'Tu cuenta existe pero falta confirmar el correo. Busca el correo de Supabase (también en spam) y toca el enlace.';
   if(/rate limit/i.test(m))return 'Demasiados intentos seguidos. Espera unos minutos.';
   if(/at least 6|Password should/i.test(m))return 'La contraseña debe tener al menos 8 caracteres.';
   return m}
@@ -285,7 +285,7 @@ $('fLogin').addEventListener('submit',async function(ev){ev.preventDefault();
   $('lBtn').disabled=true;msj(m,modoCrear?'Creando…':'Entrando…');
   try{
     if(modoCrear){var r=await sb.auth.signUp({email:email,password:pass,options:{emailRedirectTo:location.origin+location.pathname}});if(r.error)throw r.error;
-      if(!r.data.session){msj(m,'Listo. Te enviamos un correo para confirmar. Ábrelo y luego entra aquí con tu contraseña.');return}}
+      if(!r.data.session){msj(m,'Cuenta creada. Te enviamos un correo de Supabase para confirmarla (revisa también spam). Toca el enlace y luego entra aquí con tu contraseña.');return}}
     else{var r2=await sb.auth.signInWithPassword({email:email,password:pass});if(r2.error)throw r2.error}
   }catch(e){msj(m,traduce(e),true)}finally{$('lBtn').disabled=false}
 });
