@@ -59,6 +59,7 @@ input:focus,select:focus,textarea:focus{border-color:rgba(199,216,238,.5);outlin
 .barra .marca svg{height:24px;width:auto}
 .barra .marca b{font-family:var(--dato);font-weight:500;font-size:13px;letter-spacing:.14em;color:var(--mant)}
 .barra .buscar{flex:1 1 220px;max-width:380px}
+.barra #fProyecto{flex:0 1 200px;width:auto}
 .barra .yo{margin-left:auto;display:flex;align-items:center;gap:10px;font-size:13px;color:var(--suave)}
 .pestanas{display:flex;gap:4px;padding:0 max(16px,env(safe-area-inset-left,0px));overflow-x:auto}
 .pestanas button{background:none;border:0;border-bottom:2px solid transparent;padding:10px 12px;cursor:pointer;color:var(--suave);font-weight:600;white-space:nowrap}
@@ -161,7 +162,8 @@ h3.sec{margin:0;font-size:13px;font-family:var(--dato);font-weight:500;letter-sp
   <header class="barra">
     <div class="fila">
       <div class="marca"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1457 442"><g transform="translate(129.57 291.58)"><path fill="#C7D8EE" d="M54.43 -18.00L0.43 -18.00L14.77 -154.40L76.17 -154.40L166.61 -76.80L174.77 -154.40L228.77 -154.40L214.43 -18.00L154.43 -18.00L62.82 -97.80L54.43 -18.00ZM447.84 -4.20Q421.64 13.00 360.84 13.00Q300.04 13.00 271.44 -4.20Q242.84 -21.40 240.27 -58.20Q237.69 -95.00 263.89 -112.20Q290.09 -129.40 350.89 -129.40Q411.69 -129.40 440.29 -112.20Q468.89 -95.00 471.47 -58.20Q474.04 -21.40 447.84 -4.20ZM357.63 -33.00Q382.63 -33.00 395.07 -35.20Q407.52 -37.40 412.35 -42.70Q417.18 -48.00 416.47 -58.20Q415.75 -68.40 410.18 -73.70Q404.61 -79.00 391.86 -81.20Q379.10 -83.40 354.10 -83.40Q317.50 -83.40 305.36 -78.30Q293.22 -73.20 294.27 -58.20Q295.31 -43.20 308.17 -38.10Q321.03 -33.00 357.63 -33.00ZM546.97 8.00L492.97 8.00L485.82 -128.40L539.82 -128.40L546.97 8.00ZM719.20 0.00L577.20 0.00L577.20 -136.40L719.20 -136.40Q736.20 -136.40 749.30 -133.20Q762.40 -130.00 773.40 -122.60Q784.40 -115.20 790.20 -101.50Q796.00 -87.80 796.00 -68.40Q796.00 -52.20 792.00 -39.90Q788.00 -27.60 781.20 -20.10Q774.40 -12.60 764.30 -8.00Q754.20 -3.40 743.40 -1.70Q732.60 0.00 719.20 0.00ZM631.20 -90.40L631.20 -46.00L713.80 -46.00Q728.60 -46.00 734.30 -50.00Q740.00 -54.00 740.00 -68.40Q740.00 -82.40 734.20 -86.40Q728.40 -90.40 713.80 -90.40L631.20 -90.40Z"/><path fill="none" stroke="#C7D8EE" stroke-width="7.00" d="M-59.57 -146.40V-214.40H8.43M788.00 -214.40H856.00V-146.40M-59.57 5.00V73.00H8.43M788.00 73.00H856.00V5.00"/><polygon fill="#C7D8EE" points="1107.76,-180.79 1113.02,-116.43 1134.96,-157.15 1131.90,-115.92 1200.44,-171.90 1154.64,-105.38 1194.88,-117.30 1156.89,-84.53 1230.42,-80.99 1163.79,-68.02 1228.49,-37.13 1149.48,-50.51 1194.58,-0.32 1143.03,-34.77 1160.62,6.26 1130.67,-13.63 1132.82,56.59 1108.63,-18.85 1086.37,56.31 1090.05,-18.49 1058.15,17.60 1075.31,-35.34 1025.82,-4.32 1063.46,-51.77 981.68,-29.65 1060.12,-64.43 967.74,-79.62 1051.07,-90.24 1005.42,-115.71 1057.64,-103.85 1033.83,-144.36 1074.32,-118.53 1060.55,-206.08 1096.42,-122.23"/></g></svg><b>CRM</b></div>
-      <input class="buscar" id="buscar" type="search" placeholder="Buscar nombre, empresa, teléfono…" aria-label="Buscar contactos">
+      <select id="fProyecto" aria-label="Proyecto"><option value="">Todos los proyectos</option></select>
+      <input class="buscar" id="buscar" type="search" placeholder="Buscar nombre, empresa, barrio, teléfono…" aria-label="Buscar contactos">
       <button class="btn pri" id="bNuevo" type="button">+ Nuevo contacto</button>
       <div class="yo"><span id="yoEmail"></span><button class="btn chico" id="bSalir" type="button">Salir</button></div>
     </div>
@@ -190,7 +192,7 @@ h3.sec{margin:0;font-size:13px;font-family:var(--dato);font-weight:500;letter-sp
       </div>
       <div class="tabla-c" style="margin-top:12px">
         <table><thead><tr>
-          <th data-o="nombre">Nombre</th><th data-o="empresa">Empresa</th><th data-o="telefono">Teléfono</th><th data-o="etapa">Etapa</th><th data-o="servicio">Servicio</th><th data-o="valor" class="der">Valor</th><th data-o="fecha_seguimiento">Seguimiento</th><th data-o="responsable">Responsable</th>
+          <th data-o="nombre">Nombre</th><th data-o="proyecto">Proyecto</th><th data-o="empresa">Empresa</th><th data-o="telefono">Teléfono</th><th data-o="etapa">Etapa</th><th data-o="servicio">Servicio</th><th data-o="valor" class="der">Valor</th><th data-o="fecha_seguimiento">Seguimiento</th><th data-o="responsable">Responsable</th>
         </tr></thead><tbody id="tLista"></tbody></table>
       </div>
     </div>
@@ -210,11 +212,16 @@ h3.sec{margin:0;font-size:13px;font-family:var(--dato);font-weight:500;letter-sp
     <div class="acciones-c" id="pAcc"></div>
     <form id="fContacto" class="rejilla" novalidate>
       <label class="campo">Nombre *<input id="c_nombre" required></label>
+      <label class="campo">Proyecto *<select id="c_proyecto" required></select></label>
       <label class="campo">Empresa<input id="c_empresa"></label>
       <label class="campo">Teléfono / WhatsApp<input id="c_telefono" inputmode="tel"></label>
       <label class="campo">Correo<input id="c_email" type="email"></label>
       <label class="campo">Ciudad<input id="c_ciudad"></label>
-      <label class="campo">Sector<input id="c_sector" placeholder="Restaurante, clínica, tienda…"></label>
+      <label class="campo">Tipo de negocio<input id="c_sector" placeholder="Hamburguesería, alitas, café, bar…"></label>
+      <label class="campo">Dirección<input id="c_direccion" placeholder="Cra. 36 # 44-10"></label>
+      <label class="campo">Barrio<input id="c_barrio" placeholder="Cabecera del Llano"></label>
+      <label class="campo">Instagram<input id="c_instagram" placeholder="@usuario"></label>
+      <label class="campo">Página web<input id="c_web" inputmode="url"></label>
       <label class="campo">Servicio de interés<select id="c_servicio"></select></label>
       <label class="campo">Origen<select id="c_origen"></select></label>
       <label class="campo">Etapa<select id="c_etapa"></select></label>
@@ -297,6 +304,7 @@ $('fClave').addEventListener('submit',async function(ev){ev.preventDefault();var
   var r=await sb.auth.updateUser({password:p});if(r.error){msj($('nMsj'),traduce(r.error),true);return}aviso('Contraseña guardada');history.replaceState(null,'',location.pathname);arranca()});
 $('bSalir').addEventListener('click',async function(){await sb.auth.signOut();mostrar('login')});
 
+var PROYECTOS=[];
 var yo=null,miembros=[],contactos=[],actual=null,vista='tablero',orden={c:'actualizado',d:-1};
 var recuperando=/type=recovery/.test(location.hash);
 sb.auth.onAuthStateChange(function(evento,sesion){
@@ -311,6 +319,7 @@ async function arranca(){
   yo=s.user.email.toLowerCase();
   var rm=await sb.from('miembros').select('email,nombre').order('nombre');
   if(rm.error||!rm.data.length){await sb.auth.signOut();mostrar('login');msj($('lMsj'),'Este correo no tiene acceso al CRM de NOID.',true);return}
+  var rp=await sb.from('proyectos').select('id,nombre').order('orden');PROYECTOS=(rp.data||[]).map(function(p){return [p.id,p.nombre]});
   miembros=rm.data;$('yoEmail').textContent=(miembros.find(function(x){return x.email===yo})||{nombre:yo}).nombre;
   llenaSelects();mostrar('app');await carga();
 }
@@ -318,6 +327,8 @@ async function arranca(){
 /* ---------- Datos ---------- */
 function opciones(sel,lista){sel.innerHTML=lista.map(function(o){return '<option value="'+esc(o[0])+'">'+esc(o[1])+'</option>'}).join('')}
 function llenaSelects(){
+  opciones($('c_proyecto'),[['','— Elige el proyecto —']].concat(PROYECTOS));opciones($('fProyecto'),[['','Todos los proyectos']].concat(PROYECTOS));
+  try{var fp=localStorage.getItem('crm-proyecto');if(fp&&PROYECTOS.some(function(p){return p[0]===fp}))$('fProyecto').value=fp}catch(e){}
   opciones($('c_etapa'),ETAPAS);opciones($('c_servicio'),SERVICIOS);opciones($('c_origen'),ORIGENES);
   opciones($('c_responsable'),[['','—']].concat(miembros.map(function(m){return [m.email,m.nombre]})));
   opciones($('fEtapa'),[['','Todas']].concat(ETAPAS));opciones($('fServicio'),[['','Todos']].concat(SERVICIOS.slice(1)));
@@ -332,7 +343,8 @@ async function carga(){
 function filtrados(){
   var q=$('buscar').value.trim().toLowerCase();
   return contactos.filter(function(c){
-    if(q&&![c.nombre,c.empresa,c.telefono,c.email,c.ciudad,c.sector].join(' ').toLowerCase().includes(q))return false;
+    if($('fProyecto').value&&c.proyecto!==$('fProyecto').value)return false;
+    if(q&&![c.nombre,c.empresa,c.telefono,c.email,c.ciudad,c.sector,c.barrio,c.direccion,c.instagram].join(' ').toLowerCase().includes(q))return false;
     if(vista==='lista'){if($('fEtapa').value&&c.etapa!==$('fEtapa').value)return false;if($('fServicio').value&&c.servicio!==$('fServicio').value)return false;if($('fResp').value&&c.responsable!==$('fResp').value)return false}
     return true});
 }
@@ -350,6 +362,7 @@ function pinta(){
 }
 function ficha(c){var ef=estadoFecha(c.fecha_seguimiento);
   return '<button class="ficha" draggable="true" data-id="'+c.id+'"><span class="n">'+esc(c.nombre)+'</span>'+(c.empresa?'<span class="e">'+esc(c.empresa)+'</span>':'')+
+  (c.proyecto?'<span class="etq">'+esc(nombreDe(PROYECTOS,c.proyecto))+'</span>':'')+
   (c.servicio?'<span class="etq">'+esc(nombreDe(SERVICIOS,c.servicio))+'</span>':'')+
   '<span class="pie"><span class="num">'+(Number(c.valor)?plata(c.valor):'')+'</span><span class="'+ef+'">'+(c.fecha_seguimiento?(ef==='vencido'?'Vencido · ':ef==='hoy'?'Hoy · ':'')+fechaCorta(c.fecha_seguimiento):'')+'</span></span></button>'}
 function pintaTablero(lista){
@@ -359,7 +372,7 @@ function pintaTablero(lista){
 function pintaLista(lista){
   lista=lista.slice().sort(function(a,b){var x=a[orden.c],y=b[orden.c];if(orden.c==='valor'){x=Number(x||0);y=Number(y||0)}x=x==null?'':x;y=y==null?'':y;return (x>y?1:x<y?-1:0)*orden.d});
   $('tLista').innerHTML=lista.length?lista.map(function(c){var ef=estadoFecha(c.fecha_seguimiento);
-    return '<tr data-id="'+c.id+'"><td>'+esc(c.nombre)+'</td><td>'+esc(c.empresa||'')+'</td><td class="num">'+esc(c.telefono||'')+'</td><td>'+esc(nombreDe(ETAPAS,c.etapa))+'</td><td>'+esc(nombreDe(SERVICIOS,c.servicio||''))+'</td><td class="num der">'+(Number(c.valor)?plata(c.valor):'')+'</td><td class="num" style="color:'+(ef==='vencido'?'var(--alerta)':ef==='hoy'?'var(--mant)':'inherit')+'">'+fechaCorta(c.fecha_seguimiento)+'</td><td>'+esc(nombreMiembro(c.responsable))+'</td></tr>'}).join(''):'<tr><td colspan="8" class="vacio">No hay contactos con esos filtros.</td></tr>';
+    return '<tr data-id="'+c.id+'"><td>'+esc(c.nombre)+'</td><td>'+esc(nombreDe(PROYECTOS,c.proyecto))+'</td><td>'+esc(c.empresa||'')+'</td><td class="num">'+esc(c.telefono||'')+'</td><td>'+esc(nombreDe(ETAPAS,c.etapa))+'</td><td>'+esc(nombreDe(SERVICIOS,c.servicio||''))+'</td><td class="num der">'+(Number(c.valor)?plata(c.valor):'')+'</td><td class="num" style="color:'+(ef==='vencido'?'var(--alerta)':ef==='hoy'?'var(--mant)':'inherit')+'">'+fechaCorta(c.fecha_seguimiento)+'</td><td>'+esc(nombreMiembro(c.responsable))+'</td></tr>'}).join(''):'<tr><td colspan="9" class="vacio">No hay contactos con esos filtros.</td></tr>';
 }
 function pintaSeg(lista){
   var lim=new Date(Date.now()+7*864e5).toISOString().slice(0,10);
@@ -374,7 +387,7 @@ document.querySelectorAll('.pestanas button').forEach(function(b){b.addEventList
   $('vTablero').hidden=vista!=='tablero';$('vLista').hidden=vista!=='lista';$('vSeg').hidden=vista!=='seguimientos';
   try{localStorage.setItem('crm-vista',vista)}catch(e){}pinta()})});
 try{var v0=localStorage.getItem('crm-vista');if(v0){var bb=document.querySelector('.pestanas [data-v="'+v0+'"]');if(bb)setTimeout(function(){bb.click()},0)}}catch(e){}
-$('buscar').addEventListener('input',pinta);['fEtapa','fServicio','fResp'].forEach(function(id){$(id).addEventListener('change',pinta)});
+$('buscar').addEventListener('input',pinta);$('fProyecto').addEventListener('change',function(){try{localStorage.setItem('crm-proyecto',$('fProyecto').value)}catch(e){}pinta()});['fEtapa','fServicio','fResp'].forEach(function(id){$(id).addEventListener('change',pinta)});
 document.querySelectorAll('th[data-o]').forEach(function(th){th.addEventListener('click',function(){var c=th.dataset.o;orden={c:c,d:orden.c===c?-orden.d:1};pinta()})});
 document.addEventListener('click',function(ev){var f=ev.target.closest('.ficha,tbody tr[data-id]');if(f&&f.dataset.id)abre(f.dataset.id)});
 
@@ -392,7 +405,7 @@ $('vTablero').addEventListener('drop',async function(ev){var col=ev.target.close
   aviso('Movido a '+nombreDe(ETAPAS,nueva))});
 
 /* ---------- Panel de contacto ---------- */
-var CAMPOS=['nombre','empresa','telefono','email','ciudad','sector','servicio','origen','etapa','valor','responsable','fecha_seguimiento','proximo_paso','notas'];
+var CAMPOS=['nombre','proyecto','empresa','telefono','email','ciudad','sector','direccion','barrio','instagram','web','servicio','origen','etapa','valor','responsable','fecha_seguimiento','proximo_paso','notas'];
 function abrePanel(){$('velo').hidden=false;$('panel').hidden=false;$('pConfirmar').hidden=true;setTimeout(function(){$('c_nombre').focus()},30)}
 function cierra(){$('velo').hidden=true;$('panel').hidden=true;actual=null}
 $('pCerrar').addEventListener('click',cierra);$('velo').addEventListener('click',cierra);
@@ -407,11 +420,12 @@ function abre(id){
   $('pTitulo').textContent=c.nombre;CAMPOS.forEach(function(k){$('c_'+k).value=c[k]==null?'':(k==='valor'?(Number(c[k])||''):c[k])});
   $('pBorrar').hidden=false;$('pHist').hidden=false;pintaAcciones(c);abrePanel();cargaHist(id);
 }
-$('bNuevo').addEventListener('click',function(){actual=null;$('pTitulo').textContent='Nuevo contacto';$('fContacto').reset();$('c_etapa').value='nuevo';$('c_responsable').value=yo;
+$('bNuevo').addEventListener('click',function(){actual=null;$('pTitulo').textContent='Nuevo contacto';$('fContacto').reset();$('c_etapa').value='nuevo';$('c_responsable').value=yo;$('c_proyecto').value=$('fProyecto').value||'';
   $('pBorrar').hidden=true;$('pHist').hidden=true;pintaAcciones(null);abrePanel()});
 $('fContacto').addEventListener('submit',async function(ev){ev.preventDefault();
   var d={};CAMPOS.forEach(function(k){var v=$('c_'+k).value.trim();d[k]=v===''?null:v});
   if(!d.nombre){aviso('Escribe al menos el nombre.',true);$('c_nombre').focus();return}
+  if(!d.proyecto){aviso('Elige el proyecto: así se clasifica para las campañas.',true);$('c_proyecto').focus();return}
   d.valor=d.valor?Number(String(d.valor).replace(/\D/g,''))||0:0;if(d.email)d.email=d.email.toLowerCase();
   $('pGuardar').disabled=true;
   try{
@@ -441,7 +455,7 @@ $('fAct').addEventListener('submit',async function(ev){ev.preventDefault();if(!a
 
 /* ---------- CSV ---------- */
 $('bCsv').addEventListener('click',function(){
-  var cols=['nombre','empresa','telefono','email','ciudad','sector','servicio','origen','etapa','valor','responsable','fecha_seguimiento','proximo_paso','notas','creado'];
+  var cols=['proyecto','nombre','empresa','telefono','email','ciudad','barrio','direccion','instagram','web','sector','servicio','origen','etapa','valor','responsable','fecha_seguimiento','proximo_paso','notas','creado'];
   var filas=[cols.join(',')].concat(filtrados().map(function(c){return cols.map(function(k){var v=c[k]==null?'':String(c[k]);return '"'+v.replace(/"/g,'""')+'"'}).join(',')}));
   var b=new Blob(['﻿'+filas.join('\n')],{type:'text/csv;charset=utf-8'});var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='crm-noid-'+hoyISO()+'.csv';document.body.appendChild(a);a.click();a.remove();
 });
